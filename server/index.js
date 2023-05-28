@@ -17,7 +17,7 @@ app.use(
     credentials: true,
     origin: [
       'http://localhost:3000',
-      'https://parker-delivery.netlify.app',
+      'https://master--parker-delivery.netlify.app',
     ],
   })
 )
