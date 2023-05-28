@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "netlify-postbuild": "cd client && npm install && npm run build & cd server && npm install",
+    "postbuild": "cd client && npm install && npm run build & cd server && npm install",
     "start": "cd server && npm start"
   },
   "keywords": [],
