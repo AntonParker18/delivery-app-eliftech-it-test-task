@@ -1,0 +1,71 @@
+.contentWrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.shopContainer {
+  padding: 2em;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.navContainer {
+  padding: 2em;
+  width: 15vw;
+  height: 15vh;
+
+}
+
+.restaurant {
+  margin: 0.5em;
+  display: grid;
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 280px) {
+  .contentWrapper {
+    display: grid;
+    grid-template-rows: 0.5fr 6fr;
+    grid-template-columns: none;
+    .navContainer {
+      padding: 1em;
+      width: auto;
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .contentWrapper {
+    display: grid;
+    grid-template-rows: 0.5fr 6fr;
+    grid-template-columns: none;
+    .navContainer {
+      padding: 1em;
+      width: 40vw;
+      .buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 912px) {
+  .contentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    .navContainer {
+      padding: 1em;
+      width: 15vw;
+      .buttons {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: none;
+      }
+    }
+  }
+}

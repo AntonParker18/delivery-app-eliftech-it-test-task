@@ -1,0 +1,138 @@
+.wrapper {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  border: solid 1px rgb(133, 133, 133);
+  border-radius: 10px;
+  padding: 10px;
+  justify-content: center;
+}
+
+.orderParams {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  flex-grow: 8;
+}
+
+.cartItem__qty input {
+  padding: 10px;
+  margin-left: 0.4rem;
+  width: 60px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  outline: none;
+}
+.counter {
+  padding: 10px;
+}
+
+.deleteBtn {
+  justify-content: center;
+}
+
+@media screen and (min-width: 280px) {
+  .wrapper {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    border: solid 1px rgb(133, 133, 133);
+    padding: 5px;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .orderParams {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 8;
+    text-align: center;
+  }
+  .cartItem__qty input {
+    padding: 10px;
+    margin-left: 0.4rem;
+    width: 60px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    outline: none;
+  }
+  .counter {
+    padding: 10px;
+  }
+
+  .deleteBtn {
+    text-align: center;
+    padding: 10px 0px;
+  }
+}
+
+@media screen and (min-width: 540px) {
+  .wrapper {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    border: solid 1px rgb(133, 133, 133);
+    padding: 5px;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .orderParams {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 8;
+    text-align: center;
+  }
+
+  .cartItem__qty input {
+    padding: 10px;
+    margin-left: 0.4rem;
+    width: 60px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    outline: none;
+  }
+  .counter {
+    padding: 10px;
+  }
+
+  .deleteBtn {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 912px) {
+  .wrapper {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    border: solid 1px rgb(133, 133, 133);
+    border-radius: 10px;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .orderParams {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-grow: 8;
+  }
+  .cartItem__qty input {
+    padding: 10px;
+    margin-left: 0.4rem;
+    width: 60px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    outline: none;
+  }
+  .counter {
+    padding: 10px;
+  }
+
+  .deleteBtn {
+    justify-content: center;
+  }
+}

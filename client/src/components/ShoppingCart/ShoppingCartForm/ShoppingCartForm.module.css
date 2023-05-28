@@ -1,0 +1,38 @@
+.wrapper {
+  margin: 1rem;
+}
+
+.from {
+  grid-area: f;
+  width: 35vw;
+  margin: 0 auto;
+}
+
+.googleMap {
+  height: 200px;
+  border: 1px solid rgb(133, 133, 133);
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 280px) {
+  .from {
+    grid-area: f;
+    width: 100%;
+  }
+  .googleMap {
+    height: 200px;
+    border: 1px solid rgb(133, 133, 133);
+    border-radius: 10px;
+  }
+  .address {
+    max-width: 90%;
+  }
+  .addressText {
+    width: 90%;
+    margin: 0 auto;
+    padding: 5px;
+    .secondaryText {
+      width: 90%;
+    }
+  }
+}

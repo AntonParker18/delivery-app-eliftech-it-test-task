@@ -1,0 +1,122 @@
+.wrapper {
+  padding: 2em;
+}
+
+.wrapperOrder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'f o';
+}
+
+.shoppingCartOrderContainer {
+  grid-area: o;
+  border: 1px solid rgb(133, 133, 133);
+  border-radius: 10px;
+  margin: 1rem;
+  height: 500px;
+  overflow-y: auto;
+  min-height: 500px;
+}
+
+.submit {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  gap: 5rem;
+}
+
+@media screen and (min-width: 280px) {
+  .wrapper {
+    padding: 1%;
+  }
+
+  .wrapperOrder {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      'o '
+      'f ';
+  }
+
+  .shoppingCartOrderContainer {
+    grid-area: o;
+    border: 1px solid rgb(133, 133, 133);
+    border-radius: 10px;
+    margin: 1rem;
+    height: 500px;
+    overflow-y: auto;
+    min-height: 500px;
+  }
+
+  .submit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    gap: 0;
+  }
+}
+
+@media screen and (min-width: 912px) {
+  .wrapper {
+    padding: 1%;
+  }
+
+  .wrapperOrder {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-rows: none;
+    grid-template-areas: 'f o';
+  }
+
+  .shoppingCartOrderContainer {
+    grid-area: o;
+    border: 1px solid rgb(133, 133, 133);
+    border-radius: 10px;
+    margin: 1rem;
+    height: 500px;
+    overflow-y: auto;
+    min-height: 500px;
+  }
+
+  .submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+    gap: 5rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapper {
+    padding: 1%;
+  }
+
+  .wrapperOrder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+    grid-template-areas: 'f o';
+  }
+
+  .shoppingCartOrderContainer {
+    grid-area: o;
+    border: 1px solid rgb(133, 133, 133);
+    border-radius: 10px;
+    margin: 1rem;
+    height: 500px;
+    overflow-y: auto;
+    min-height: 500px;
+  }
+
+  .submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+    gap: 5rem;
+  }
+}
