@@ -22,7 +22,6 @@ const Map = ({ restaurantCoordinates, userCoordinates }) => {
     scrollwheel: false,
     disableDoubleClickZoom: true,
     fullscreenCounrol: false,
-    clickableIcons: false,
   }
 
   const mapRef = useRef(undefined)

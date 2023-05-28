@@ -49,7 +49,7 @@ const ShoppingCart = () => {
         })
       }
     }
-  }, [currentShopId, restaurants])
+  }, [currentShopId, restaurants, basket])
 
   console.log(basket)
 
@@ -60,8 +60,7 @@ const ShoppingCart = () => {
     reset,
   } = useForm({ defaultValues })
 
-  const onSubmit = async  data => {
-
+  const onSubmit = async data => {
     const product = await basket.map(product => {
       return {
         productName: product.productName,
@@ -78,8 +77,6 @@ const ShoppingCart = () => {
       totalPrice: totalPrice,
       products: product,
     }
-
-
 
     dispatch(setOrder(newOrder))
     reset({ defaultValues })

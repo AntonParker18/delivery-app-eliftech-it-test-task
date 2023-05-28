@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Grid, MenuItem, MenuList, TextField } from '@mui/material'
+import { Grid, MenuList, TextField } from '@mui/material'
 import Map from './Map/Map'
 import { Controller } from 'react-hook-form'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
@@ -140,6 +140,7 @@ const ShoppingCartForm = ({
                 required: 'Enter your email',
                 pattern: {
                   value:
+                  // eslint-disable-next-line
                     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                   message: 'Enter valide email',
                 },
@@ -166,6 +167,7 @@ const ShoppingCartForm = ({
               rules={{
                 required: 'Enter phone number',
                 pattern: {
+                  // eslint-disable-next-line
                   value: /^[\d\+][\d\(\)\ -]{4,14}\d$/,
                   message: 'Enter only numbers',
                 },
@@ -179,7 +181,7 @@ const ShoppingCartForm = ({
                   margin='normal'
                   type={'tel'}
                   onChange={e => (
-                    (e.target.value = normalizePhoneNumber(e.target.value)),
+                    (e.target.value = normalizePhoneNumber(e.target.value)) &&
                     field.onChange(e.target.value)
                   )}
                   value={field.value}
@@ -203,7 +205,7 @@ const ShoppingCartForm = ({
                     label='Address'
                     variant='outlined'
                     margin='normal'
-                    onChange={e => (field.onChange(e), handleInput(e))}
+                    onChange={e => (field.onChange(e) && handleInput(e))}
                     value={value}
                     helperText={errors.address?.message}
                     error={errors.address?.message}
