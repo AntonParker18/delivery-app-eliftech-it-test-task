@@ -51,8 +51,6 @@ const ShoppingCart = () => {
     }
   }, [currentShopId, restaurants, basket])
 
-  console.log(basket)
-
   const {
     handleSubmit,
     formState: { errors, isSubmitSuccessful },
