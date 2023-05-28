@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postbuild": "cd client && npm install && npm run build & cd server && npm install",
-    "start": "cd server && npm start"
+    "build": "cd server && npm install",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

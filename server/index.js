@@ -1,7 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const path = require('path')
 require('dotenv').config()
 
 const PORT = process.env.PORT || 5000
@@ -13,9 +12,14 @@ const shopRouter = require('./routers/shopRouter')
 const shoppingCartRouter = require('./routers/shoppingCartRouter')
 
 app.use(express.json())
-app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }))
-app.use(express.static(path.join(__dirname, '../client/build')))
-
+app.use(
+  cors({
+    origin: [
+      'http://loaclhost:3000',
+      'https://parkerdelivery-app.onrender.com',
+    ],
+  })
+)
 
 app.use('/api/shop', shopRouter)
 app.use('/api/shoppingCard', shoppingCartRouter)
