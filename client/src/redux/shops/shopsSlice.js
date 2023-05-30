@@ -4,7 +4,6 @@ import { setProducts, setRestaurants } from './shopsAction'
 const initialState = {
   restaurants: [],
   products: [],
-  currentProducts: [],
   error: null,
 }
 
@@ -17,7 +16,6 @@ const shopSlice = createSlice({
     },
     setProducts: (state, { payload }) => {
       state.products = payload
-      state.currentProducts = state.products
     },
   },
   extraReducers: {
