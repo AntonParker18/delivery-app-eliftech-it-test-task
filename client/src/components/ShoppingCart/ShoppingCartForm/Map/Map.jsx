@@ -1,8 +1,12 @@
 import React, { useRef } from 'react'
-import { GoogleMap, Marker } from '@react-google-maps/api'
+import { DirectionsRenderer, GoogleMap, Marker } from '@react-google-maps/api'
 import restaurantIcon from '../../../../assets/img/market.x24.png'
 
-const Map = ({ restaurantCoordinates, userCoordinates }) => {
+const Map = ({
+  restaurantCoordinates,
+  userCoordinates,
+  directions,
+}) => {
   const containerStyle = {
     height: '200px',
     borderRadius: '10px',
@@ -43,6 +47,21 @@ const Map = ({ restaurantCoordinates, userCoordinates }) => {
       onLoad={onLoad}
       onUnmount={onUnmount}
     >
+      {directions && userCoordinates && (
+        <DirectionsRenderer
+          directions={directions}
+          options={{
+            polylineOptions: {
+              zIndex: 50,
+              strokeColor: '#1976D2',
+              strokeWeight: 5,
+            },
+            markerOptions: {
+              visible: false
+            }
+          }}
+        />
+      )}
       {userCoordinates && <Marker position={userCoordinates} onLoad={onLoad} />}
       {restaurantCoordinates && (
         <Marker

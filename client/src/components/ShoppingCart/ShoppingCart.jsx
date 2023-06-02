@@ -4,12 +4,9 @@ import ShoppingCartOrder from './ShoppingCartOrder/ShoppingCartOrder'
 import { Alert, Button, Stack, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
-import { useJsApiLoader } from '@react-google-maps/api'
 import { setOrder } from '../../redux/shoppingCart/shoppingCartAction'
 
 import s from './ShoppingCart.module.css'
-
-const API_KEY = process.env.REACT_APP_API_KEY
 
 const defaultCenter = {
   lat: 49.232788,
@@ -37,9 +34,9 @@ const ShoppingCart = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (currentShopId?.shopId) {
+    if (basket[0]?.shopId) {
       const restaurant = restaurants.find(
-        item => item._id === currentShopId.shopId
+        item => item._id === basket[0]?.shopId
       )
 
       if (basket.length > 0) {
@@ -95,16 +92,6 @@ const ShoppingCart = () => {
     setTotalPrice(price)
   }, [basket, totalPrice, totalItems, setTotalPrice, setTotalItems])
 
-  const libraries = ['places']
-
-  const libRef = React.useRef(libraries)
-
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: API_KEY,
-    libraries: libRef.current,
-  })
-
   const onPlaceSelect = useCallback(coordinates => {
     setUsersCoordinates(coordinates)
   }, [])
@@ -125,7 +112,6 @@ const ShoppingCart = () => {
           userCoordinates={userCoordinates}
           defaultCenter={defaultCenter}
           onSelect={onPlaceSelect}
-          isLoaded={isLoaded}
           control={control}
           reset={reset}
           errors={errors}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Grid, MenuList, TextField } from '@mui/material'
 import Map from './Map/Map'
 import { Controller } from 'react-hook-form'
@@ -10,15 +10,27 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from 'react-cool-onclickoutside'
 
 import s from './ShoppingCartForm.module.css'
+import { useJsApiLoader } from '@react-google-maps/api'
 
 const ShoppingCartForm = ({
   errors,
   control,
-  isLoaded,
   onSelect,
   userCoordinates,
   restaurantCoordinates,
 }) => {
+  const API_KEY = process.env.REACT_APP_API_KEY
+
+  const libraries = ['places']
+  const libRef = React.useRef(libraries)
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: API_KEY,
+    libraries: libRef.current,
+  })
+
+  const [directions, setDirections] = useState()
   const normalizePhoneNumber = value => {
     const phoneNumber = parsePhoneNumberFromString(value)
     if (!phoneNumber) {
@@ -42,6 +54,7 @@ const ShoppingCartForm = ({
     initOnMount: false,
     debounce: 300,
   })
+
   const ref = useOnclickOutside(() => {
     clearSuggestions()
   })
@@ -49,6 +62,25 @@ const ShoppingCartForm = ({
   const handleInput = e => {
     setValue(e.target.value)
   }
+
+  const fetchDirections = useCallback((coordinates) => {
+    if (!restaurantCoordinates) return
+    // eslint-disable-next-line no-undef
+    const service = new google.maps.DirectionsService()
+    service.route(
+      {
+        origin: restaurantCoordinates,
+        destination: coordinates,
+        // eslint-disable-next-line no-undef
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === 'OK' && result) {
+          setDirections(result)
+        }
+      }
+    )
+  }, [restaurantCoordinates])
 
   const handleSelect =
     ({ description }) =>
@@ -59,6 +91,7 @@ const ShoppingCartForm = ({
       getGeocode({ address: description }).then(results => {
         const { lat, lng } = getLatLng(results[0])
         onSelect({ lat, lng })
+        fetchDirections({ lat, lng })
       })
     }
 
@@ -101,6 +134,7 @@ const ShoppingCartForm = ({
             <div className={s.googleMap}>
               {isLoaded ? (
                 <Map
+                  directions={directions}
                   userCoordinates={userCoordinates}
                   restaurantCoordinates={restaurantCoordinates}
                 />
@@ -138,7 +172,7 @@ const ShoppingCartForm = ({
                 required: 'Enter your email',
                 pattern: {
                   value:
-                  // eslint-disable-next-line
+                    // eslint-disable-next-line
                     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
                   message: 'Enter valide email',
                 },
@@ -178,10 +212,10 @@ const ShoppingCartForm = ({
                   variant='outlined'
                   margin='normal'
                   type={'tel'}
-                  onChange={e => (
+                  onChange={e =>
                     (e.target.value = normalizePhoneNumber(e.target.value)) &&
                     field.onChange(e.target.value)
-                  )}
+                  }
                   value={field.value}
                   helperText={errors.phoneNumber?.message}
                   error={errors.phoneNumber?.message}
@@ -203,7 +237,7 @@ const ShoppingCartForm = ({
                     label='Address'
                     variant='outlined'
                     margin='normal'
-                    onChange={e => (field.onChange(e) && handleInput(e))}
+                    onChange={e => field.onChange(e) && handleInput(e)}
                     value={value}
                     helperText={errors.address?.message}
                     error={errors.address?.message}
